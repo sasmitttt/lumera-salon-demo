@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LUMÉRA — a premium beauty studio demo website.">
+<title>LUMÉRA — Premium Beauty Studio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+:root{--bg:#0a0a09;--panel:#121210;--panel2:#171714;--gold:#d5b46a;--gold2:#f0d28a;--text:#f4f0e7;--muted:#aaa59a;--line:rgba(213,180,106,.22);--max:1180px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Manrope,Arial,sans-serif;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;object-fit:cover}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.gold{color:var(--gold)}
+.eyebrow{text-transform:uppercase;letter-spacing:.22em;font-size:.72rem;color:var(--gold);font-weight:700}
+h1,h2,h3{font-family:"Cormorant Garamond",serif;font-weight:500;line-height:.98}
+h2{font-size:clamp(2.7rem,5vw,4.6rem)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 22px;border:1px solid var(--gold);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;transition:.25s}
+.btn.primary{background:var(--gold);color:#090908}
+.btn:hover{transform:translateY(-2px);background:var(--gold2);color:#090908}
+.btn.ghost:hover{background:var(--gold);color:#090908}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,9,.75);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Cormorant Garamond",serif;font-size:1.9rem;letter-spacing:.16em}
+.logo span{color:var(--gold)}
+.navlinks{display:flex;gap:30px;font-size:.76rem;text-transform:uppercase;letter-spacing:.1em}
+.navlinks a{color:#d5d0c5}.navlinks a:hover{color:var(--gold)}
+.navcta{padding:10px 15px;font-size:.7rem}
+.menu{display:none;background:none;border:0;color:var(--text);font-size:1.5rem}
+.hero{min-height:100svh;display:grid;place-items:center;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,5,4,.9) 0%,rgba(5,5,4,.62) 45%,rgba(5,5,4,.2) 100%),url("https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2000&q=85") center/cover}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,var(--bg),transparent 28%,transparent 70%,rgba(0,0,0,.35))}
+.hero-content{position:relative;z-index:2;padding-top:76px;max-width:760px}
+.hero h1{font-size:clamp(4.4rem,10vw,8.5rem);margin:18px 0 22px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{max-width:570px;color:#d0cbc1;font-size:1.05rem;margin-bottom:32px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.scroll{position:absolute;bottom:28px;z-index:3;left:50%;transform:translateX(-50%);font-size:.68rem;text-transform:uppercase;letter-spacing:.22em;color:#b5afa4}
+section{padding:105px 0}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+.section-head p{max-width:420px;color:var(--muted);font-size:.95rem}
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+.service{background:var(--panel);padding:34px;min-height:245px;position:relative}
+.service .num{font-size:.7rem;color:var(--gold);letter-spacing:.15em}
+.service h3{font-size:2rem;margin:28px 0 10px}
+.service p{color:var(--muted);font-size:.88rem}
+.price{position:absolute;right:28px;top:31px;color:var(--gold);font-size:.9rem}
+.about{background:var(--panel)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.about-img{height:620px;overflow:hidden}
+.about-img img{height:100%}
+.about-copy h2{margin:17px 0 25px}
+.about-copy>p{color:var(--muted);max-width:540px;margin-bottom:26px}
+.stats{display:flex;gap:45px;margin-top:35px;padding-top:25px;border-top:1px solid var(--line)}
+.stat strong{display:block;font-family:"Cormorant Garamond",serif;font-size:2.3rem;color:var(--gold)}
+.stat span{font-size:.68rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+.gallery-grid{display:grid;grid-template-columns:1.25fr .75fr .75fr;grid-template-rows:280px 280px;gap:12px}
+.gallery-grid img{height:100%;filter:saturate(.85)}
+.gallery-grid .big{grid-row:span 2}
+.quote{text-align:center;background:var(--panel);border-block:1px solid var(--line)}
+.quote blockquote{font-family:"Cormorant Garamond",serif;font-size:clamp(2rem,4vw,3.5rem);max-width:900px;margin:20px auto 24px}
+.quote cite{font-style:normal;text-transform:uppercase;letter-spacing:.16em;font-size:.7rem;color:var(--gold)}
+.booking{position:relative;overflow:hidden}
+.booking:before{content:"";position:absolute;inset:0;opacity:.35;background:url("https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=1800&q=80") center/cover}
+.booking-card{position:relative;background:rgba(12,12,10,.9);border:1px solid var(--line);padding:60px;max-width:850px;margin:auto;text-align:center}
+.booking-card h2{margin:16px 0}
+.booking-card p{color:var(--muted);max-width:570px;margin:0 auto 28px}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px}
+.contact-list{margin-top:28px}
+.contact-item{padding:18px 0;border-bottom:1px solid var(--line)}
+.contact-item small{display:block;color:var(--gold);text-transform:uppercase;letter-spacing:.13em;font-size:.65rem;margin-bottom:5px}
+.contact-item span{color:#d5d0c5}
+.map{min-height:360px;background:var(--panel);border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:30px}
+.map .pin{font-size:2.5rem;color:var(--gold)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:#817d74;font-size:.72rem}
+.footer-inner{display:flex;justify-content:space-between;gap:20px}
+@media(max-width:800px){
+.navlinks{display:none}.menu{display:block}
+.hero h1{font-size:clamp(4rem,18vw,6rem)}
+.services,.about-grid,.contact-grid{grid-template-columns:1fr}
+.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 240px 240px}.gallery-grid .big{grid-row:span 1;grid-column:span 2}
+.about-img{height:450px}.booking-card{padding:40px 24px}.section-head{display:block}.section-head p{margin-top:18px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a href="#" class="logo">LUMÉRA<span>.</span></a>
+    <nav class="navlinks">
+      <a href="#services">Services</a><a href="#about">About</a><a href="#gallery">Gallery</a><a href="#contact">Contact</a>
+    </nav>
+    <a href="#booking" class="btn primary navcta">Book Now</a>
+    <button class="menu" aria-label="Menu">☰</button>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">Premium Beauty Studio · Est. 2018</div>
+    <h1>Where beauty becomes <em>an experience.</em></h1>
+    <p>A refined beauty destination for hair, skin and signature treatments — designed around you, your style and your confidence.</p>
+    <div class="actions">
+      <a class="btn primary" href="#booking">Book an Appointment ↗</a>
+      <a class="btn ghost" href="#services">Explore Services</a>
+    </div>
+  </div>
+  <div class="scroll">Scroll to discover ↓</div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">Signature Services</div><h2>Curated <span class="gold">beauty.</span></h2></div>
+      <p>From effortless everyday styling to indulgent transformations, every service is tailored to make you feel exceptional.</p>
+    </div>
+    <div class="services">
+      <article class="service"><span class="num">01 / HAIR</span><span class="price">from ₹1,200</span><h3>Signature Hair</h3><p>Precision cuts, luxury blowouts, colour, highlights and treatments tailored to your look.</p></article>
+      <article class="service"><span class="num">02 / SKIN</span><span class="price">from ₹1,500</span><h3>Skin Rituals</h3><p>Personalised facials and restorative rituals designed to leave your skin luminous and refreshed.</p></article>
+      <article class="service"><span class="num">03 / BEAUTY</span><span class="price">from ₹600</span><h3>Beauty Edit</h3><p>Brows, lashes, manicures, pedicures and finishing touches for your most polished self.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container about-grid">
+    <div class="about-img"><img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=1100&q=85" alt="Stylish salon interior"></div>
+    <div class="about-copy">
+      <div class="eyebrow">The LUMÉRA Philosophy</div>
+      <h2>Luxury should feel <span class="gold">personal.</span></h2>
+      <p>LUMÉRA was created for people who believe self-care is more than a routine. Our artists combine modern technique with thoughtful consultation to create results that feel unmistakably yours.</p>
+      <p>Every detail — from the first consultation to the final mirror check — is designed to make your time with us feel effortless.</p>
+      <div class="stats"><div class="stat"><strong>8+</strong><span>Years of craft</span></div><div class="stat"><strong>4.9</strong><span>Client rating</span></div><div class="stat"><strong>12k+</strong><span>Appointments</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="container">
+    <div class="section-head"><div><div class="eyebrow">The LUMÉRA Look</div><h2>Inside our <span class="gold">world.</span></h2></div><p>Warm light, considered details and a space designed to slow the day down.</p></div>
+    <div class="gallery-grid">
+      <img class="big" src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?auto=format&fit=crop&w=1200&q=85" alt="Luxury salon styling area">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=85" alt="Beauty treatment">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=900&q=85" alt="Beauty styling">
+      <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&w=900&q=85" alt="Nail beauty">
+      <img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=900&q=85" alt="Salon products">
+    </div>
+  </div>
+</section>
+
+<section class="quote">
+  <div class="container">
+    <div class="eyebrow">Client Love</div>
+    <blockquote>“It doesn't feel like an appointment. It feels like two hours I finally gave back to myself.”</blockquote>
+    <cite>— Aanya M. · LUMÉRA Client</cite>
+  </div>
+</section>
+
+<section id="booking" class="booking">
+  <div class="container">
+    <div class="booking-card">
+      <div class="eyebrow">Your Time Starts Here</div>
+      <h2>Ready for your <span class="gold">LUMÉRA</span> moment?</h2>
+      <p>Tell us what you're looking for and our team will help you find the right service and time.</p>
+      <a class="btn primary" href="https://wa.me/919999999999?text=Hi%20LUM%C3%89RA%2C%20I'd%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener">WhatsApp to Book ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="eyebrow">Visit LUMÉRA</div>
+      <h2>Come <span class="gold">in.</span></h2>
+      <div class="contact-list">
+        <div class="contact-item"><small>Address</small><span>24 Rosewood Avenue, Mumbai, Maharashtra</span></div>
+        <div class="contact-item"><small>Hours</small><span>Mon–Sat · 10:00 AM – 8:00 PM<br>Sun · 11:00 AM – 6:00 PM</span></div>
+        <div class="contact-item"><small>Phone</small><span>+91 99999 99999</span></div>
+      </div>
+    </div>
+    <div class="map"><div><div class="pin">⌖</div><h3>Find your way to us.</h3><p style="color:#aaa59a;margin:10px 0 22px">Replace this demo address with your client's real location.</p><a class="btn ghost" href="https://www.google.com/maps" target="_blank" rel="noopener">Open Maps ↗</a></div></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="container footer-inner"><span>© 2026 LUMÉRA Beauty Studio — Demo Website</span><span>Designed as a reusable salon demo</span></div></footer>
+<script>
+const menu=document.querySelector('.menu'), nav=document.querySelector('.navlinks');
+menu?.addEventListener('click',()=>{nav.style.display=nav.style.display==='flex'?'none':'flex';nav.style.position='absolute';nav.style.top='76px';nav.style.left='20px';nav.style.right='20px';nav.style.padding='20px';nav.style.background='#121210';nav.style.flexDirection='column';nav.style.gap='18px';});
+</script>
+</body>
+</html>
